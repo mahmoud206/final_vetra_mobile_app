@@ -1,56 +1,52 @@
-name: Flutter Android Build - final - final
+name: Flutter Build Workflow- final 2546
 
 on:
-  workflow_dispatch: # Manual trigger only
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 env:
-  FLUTTER_VERSION: "3.10.6" # Replace with a valid Flutter version
-  TARGET_PLATFORM: "android-arm64"
+  FLUTTER_VERSION: "3.10.6" # Specify the Flutter version you want to use
+  TARGET_PLATFORM: "android-arm64" # Target platform for the build
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install XML tools
-        run: sudo apt-get install -y libxml2-utils
-
-      - name: Validate original AndroidManifest.xml
-        run: |
-          if ! xmllint --noout android/app/src/main/AndroidManifest.xml; then
-            echo "::error::Original AndroidManifest.xml has syntax errors"
-            exit 1
-          fi
-
+      # Step 2: Set up JDK (required for Android builds)
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'temurin' # Use Temurin JDK
           java-version: '17'
 
-      - name: Manually Install Flutter
+      # Step 3: Install Flutter
+      - name: Install Flutter
         run: |
-          # Download and extract Flutter SDK
           wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
           tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
           echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
 
+      # Step 4: Run Flutter Doctor
       - name: Run Flutter Doctor
         run: flutter doctor -v
 
+      # Step 5: Install Dependencies
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # Step 6: Build the Flutter App (Release APK)
       - name: Build Release APK
         run: |
-          flutter pub get
           flutter build apk --release \
             --target-platform ${{ env.TARGET_PLATFORM }} \
-            --dart-define=FLUTTER_BUILD_MODE=release \
-            --verbose
+            --dart-define=FLUTTER_BUILD_MODE=release
 
-      - name: Upload APK artifact
+      # Step 7: Upload the APK as an artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
