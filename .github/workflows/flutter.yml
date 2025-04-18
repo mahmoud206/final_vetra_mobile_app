@@ -35,8 +35,7 @@ jobs:
         run: flutter doctor -v
 
       # Step 5: Install Dependencies
-      - name: Install Dependencies
-        run: flutter pub get
+
 
       # Step 6: Build the Flutter App (Release APK)
       - name: Build Release APK
