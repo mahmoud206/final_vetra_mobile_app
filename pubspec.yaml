@@ -1,0 +1,50 @@
+name: elanam_reports
+description: A Flutter application for generating financial reports from Elanam clinics.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  # MongoDB connection
+  mongo_dart: ^0.9.3
+  # State management
+  provider: ^6.1.1
+  # UI elements
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.1.0
+  lottie: ^2.7.0
+  # Date handling
+  intl: ^0.18.1
+  # PDF generation and sharing
+  pdf: ^3.10.4
+  printing: ^5.11.1
+  share_plus: ^7.2.1
+  path_provider: ^2.1.1
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+  # Form handling
+  flutter_form_builder: ^9.1.1
+  form_builder_validators: ^9.1.0
+  # SVG support
+  flutter_svg: ^2.0.9
+  # Network 
+  http: ^1.1.0
+  dio: ^5.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/animations/
+    - assets/images/
+    - assets/icons/
