@@ -9,31 +9,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
-  # MongoDB connection
-  mongo_dart: ^0.9.3
-  # State management
-  provider: ^6.1.1
-  # UI elements
-  flutter_animate: ^4.5.0
-  google_fonts: ^6.1.0
-  lottie: ^2.7.0
-  # Date handling
-  intl: ^0.18.1
-  # PDF generation and sharing
-  pdf: ^3.10.4
-  printing: ^5.11.1
-  share_plus: ^7.2.1
-  path_provider: ^2.1.1
-  # Localization
+  cupertino_icons: ^1.0.8
+  mongo_dart: ^0.10.3
+  provider: ^6.1.4
+  flutter_animate: ^4.5.2
+  google_fonts: ^6.2.1
+  lottie: ^3.3.1
+  intl: ^0.19.0
+  pdf: ^3.11.3
+  printing: ^5.14.2
+  share_plus: ^10.1.4
+  path_provider: ^2.1.5
   flutter_localizations:
     sdk: flutter
-  # Form handling
-  flutter_form_builder: ^9.1.1
-  form_builder_validators: ^9.1.0
-  # SVG support
-  flutter_svg: ^2.0.9
-  # Network 
+  flutter_form_builder: ^10.0.1
+  form_builder_validators: ^11.1.2
+  flutter_svg: ^2.0.17
   http: ^1.1.0
   dio: ^5.4.0
 
