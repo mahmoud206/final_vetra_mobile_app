@@ -1,10 +1,10 @@
-name: Flutter Android Build - final
+name: Flutter Android Build - final - final
 
 on:
   workflow_dispatch: # Manual trigger only
 
 env:
-  FLUTTER_VERSION: "3.29.2"
+  FLUTTER_VERSION: "3.10.6" # Replace with a valid Flutter version
   TARGET_PLATFORM: "android-arm64"
 
 jobs:
@@ -32,17 +32,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: 'stable'
-          cache: true
+      - name: Manually Install Flutter
+        run: |
+          # Download and extract Flutter SDK
+          wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+          tar xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
 
       - name: Run Flutter Doctor
         run: flutter doctor -v
-
-     
 
       - name: Build Release APK
         run: |
